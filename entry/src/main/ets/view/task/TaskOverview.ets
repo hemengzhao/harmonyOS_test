@@ -6,9 +6,6 @@ export struct TaskOverview{
 
   @Prop  @Watch('change')   list: TaskItem[];
   @State  arr: TaskOverviewItem[] = []
-  // @Prop  @Watch('onCountUpdated') list: TaskItem[];
-  // 不知道为什么监听找不到onCountUpdated
-  // Cannot find name 'onCountUpdated' in struct 'TaskOverview'
   change(){
     this.countUpdated( )
   }
@@ -24,38 +21,45 @@ export struct TaskOverview{
       obj[item.state]++
     })
 
-    console.log('Watch ===> obj', JSON.stringify(obj))
-
     this.arr =  Object.values(ETaskState).map((item) => new TaskOverviewItem(item, obj[item], ''))
-    console.log('Watch ===> obj  this.arr', this.arr[0].num, JSON.stringify(this.arr))
-
   }
 
   aboutToAppear(): void {
-    // this.countUpdated( )
+    this.countUpdated()
   }
   build() {
     Row(){
-      Text(`${this.arr.length}`)
-
       if(this.arr.length){
-        Text(`${this.arr?.[0]?.num}`)
         Column( {
           space: 10
         }){
           OverviewItem({
             color: this.arr[0].color,
-            num: this.arr[1].num,
-            title: this.arr[1].title,
+            num: this.arr[0].num,
+            title: this.arr[0].title,
+            h: 150
           })
-          OverviewItem(this.arr[2])
+          OverviewItem({
+            color: this.arr[2].color,
+            num: this.arr[2].num,
+            title: this.arr[2].title,
+          })
         }.width('48%')
 
         Column({
           space: 10
         }){
-          OverviewItem(this.arr[1])
-          OverviewItem(this.arr[3])
+          OverviewItem({
+            color: this.arr[1].color,
+            num: this.arr[1].num,
+            title: this.arr[1].title,
+          })
+          OverviewItem({
+            color: this.arr[3].color,
+            num: this.arr[3].num,
+            title: this.arr[3].title,
+            h: 150
+          })
 
         } .width('48%')
 

@@ -2,7 +2,7 @@ import { createTask } from '../../uilt/taskUilt';
 import { TaskListItem } from '../../view/task/TaskItem';
 import { TaskOverview } from '../../view/task/TaskOverview'
 import { TaskItem } from '../../viewmodel/task';
-
+import { router } from '@kit.ArkUI';
 @Extend(Text) function fancyText(fontSize: number = 30){
   .fontSize(fontSize)
   .fontWeight(FontWeight.Bold)
@@ -13,10 +13,8 @@ import { TaskItem } from '../../viewmodel/task';
 struct IndexPage {
   @State message: string = 'Hello World';
   @StorageLink('taskList') taskList: TaskItem[] = []
-
   aboutToAppear(): void {
     this.taskList =  createTask()
-    // AppStorage.setOrCreate('taskList', this.taskList);
   }
   build() {
     Stack(){
@@ -59,6 +57,28 @@ struct IndexPage {
       .height('100%')
       .padding(10)
       .backgroundColor(Color.White)
-    }
+
+
+      Stack(){
+        Image($r('app.media.background')).width('100%').borderRadius('50%')
+        Image($r('app.media.add')).width('80%').borderRadius('50%')
+          .onClick(() => {
+            router.pushUrl({
+              url: 'pages/task/addTaskPage'
+            })
+
+          })
+      }
+      .width(50)
+      .height(50)
+      .borderRadius(25)
+      .clip(true)
+      .margin({
+        right: 20
+      })
+
+
+
+    }.align(Alignment.BottomEnd)
   }
 }

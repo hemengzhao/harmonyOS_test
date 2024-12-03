@@ -1,5 +1,6 @@
 import { formatDate } from '../../uilt/date';
-import { ETaskType, TaskItem, taskType } from '../../viewmodel/task';
+import { ETaskState, ETaskType, TaskItem, taskType } from '../../viewmodel/task';
+import { router } from '@kit.ArkUI';
 
 @Extend(Text) function TextStyle(){
   .width('100%')
@@ -10,6 +11,7 @@ import { ETaskType, TaskItem, taskType } from '../../viewmodel/task';
 @Entry
 @Component
 struct AddTaskPage {
+  @StorageProp('taskList') list: TaskItem[] =[]
   @State name: string = '';
   @State date:string = ''
   @State startTime: string = ''
@@ -34,22 +36,38 @@ struct AddTaskPage {
     CalendarPickerDialog.show({
       selected: new Date(this.date),
       onAccept: (value) => {
-          console.log(JSON.stringify(value))
-        this.date = formatDate(value.getTime())
+        this.date = formatDate(value.getTime(), 'YYYY-MM-DD')
       }
     })
   }
 
   addTask () {
-    // const obj: TaskItem = new TaskItem(1, this.name)
-    console.log(JSON.stringify({
-      name: this.name,
-      date: this.date,
-      startTime: this.startTime,
-      endTime: this.endTime,
-      type: this.type,
-      describe: this.describe
-    }))
+
+    let message: string = ''
+
+    if(!this.describe){
+      message='请填写描述信息'
+    }
+    if(!this.startTime || !this.endTime){
+      message= '请选择时间'
+    }
+    if(!this.date){
+      message= '请选择日期'
+    }
+    if(!this.name){
+      message= '请填写标题信息'
+    }
+    if(message){
+      AlertDialog.show({
+        title: '请填写完整信息',
+        message: message,
+      })
+      return
+    }
+    const state = [ETaskState.DONE, ETaskState.UNDONE, ETaskState.WAIT, ETaskState.FUTURE][Math.floor(Math.random() * 4)]
+    const task = new TaskItem(new Date().getTime(), this.name, this.date, this.startTime,this.endTime, this.type, state , this.describe)
+    AppStorage.setOrCreate('taskList', this.list.concat([task]) );
+    router.back()
   }
   build() {
      Column({

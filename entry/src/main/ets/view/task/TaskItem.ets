@@ -5,12 +5,7 @@ import { TaskItem } from "../../viewmodel/task"
 @Component
 export  struct  TaskListItem{
   @Prop list: TaskItem[] = []
-  aboutToAppear(): void {
-    console.log(JSON.stringify(this.list))
-  }
-  setup(){
-    AppStorage.setOrCreate('taskList', createTask());
-  }
+
   build() {
     List(){
       ForEach(this.list.filter(item => item.date === formatDate(new Date(), 'YYYY-MM-DD')),
@@ -39,7 +34,7 @@ export  struct  TaskListItem{
           .margin({bottom: 10})
           .backgroundColor(Color.Gray)
           .borderRadius(10)
-        }.onClick(this.setup)
+        }
       }, (item: TaskItem) => item.id.toString())
 
     }.height('100%')
