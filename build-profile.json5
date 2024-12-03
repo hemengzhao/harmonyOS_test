@@ -26,8 +26,8 @@
   },
   "modules": [
     {
-      "name": "entry",
-      "srcPath": "./entry",
+      "name": "default",
+      "srcPath": "./product/default",
       "targets": [
         {
           "name": "default",
@@ -36,6 +36,38 @@
           ]
         }
       ]
+    },
+    {
+      "name": "common",
+      "srcPath": "./common",
+      "targets": [
+        {
+          "name": "default",
+          "applyToProducts": [
+            "default"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "mapApplication",
+      "srcPath": "./product/mapApplication",
+      "targets": [
+        {
+          "name": "default",
+          "applyToProducts": [
+            "default"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "homelibrary",
+      "srcPath": "./features/homelibrary",
+    },
+    {
+      "name": "orderlibrary",
+      "srcPath": "./features/orderlibrary",
     }
   ]
 }

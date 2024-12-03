@@ -5,6 +5,9 @@
   },
   "devDependencies": {
     "@ohos/hypium": "1.0.19",
-    "@ohos/hamock": "1.0.0"
+    "@ohos/hamock": "1.0.0",
+    "common": "file:./common",
+    "homelibrary": "file:./features/homelibrary",
+    "orderlibrary": "file:./features/orderlibrary"
   }
 }

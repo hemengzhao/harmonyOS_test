@@ -1,7 +1,0 @@
-{
-  "src": [
-    "pages/Index",
-    "pages/task/IndexPage",
-    "pages/task/addTaskPage"
-  ]
-}
