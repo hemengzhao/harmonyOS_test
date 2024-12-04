@@ -1,5 +1,5 @@
 
-import  {BreakPointSystem} from "@ohos/common"
+// import  {BreakPointSystem} from "@ohos/common"
 import {MainPage} from 'homelibrary'
 
 import  {Cart} from '../view/Cart'
@@ -11,7 +11,7 @@ import { BasicConstants } from '../Constants/BasicConstants';
 @Component
 struct Index {
   @StorageProp('currentBreakPoint') currentBreakPoint: string = 'sm'
-  private  breakPointSystem = new BreakPointSystem()
+  // private  breakPointSystem: BreakPointSystem = new BreakPointSystem()
 
   @State message: string = 'Hello World 123';
   @State currentIndex: number = 0
@@ -19,7 +19,7 @@ struct Index {
   private controller: TabsController = new TabsController()
 
   aboutToAppear(): void {
-    this.breakPointSystem.register()
+    // this.breakPointSystem.register()
   }
   @Builder MyTabBar(
     title: string,
