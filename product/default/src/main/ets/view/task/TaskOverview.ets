@@ -21,7 +21,7 @@ export struct TaskOverview{
       obj[item.state]++
     })
 
-    this.arr =  Object.values(ETaskState).map((item) => new TaskOverviewItem(item, obj[item], ''))
+    // this.arr =  Object.values(ETaskState).map((item) => new TaskOverviewItem(item, obj[item], ''))
   }
 
   aboutToAppear(): void {

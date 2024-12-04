@@ -10,7 +10,7 @@
         "buildOption": {
           "strictMode": {
             "caseSensitiveCheck": true,
-            "useNormalizedOHMUrl": true
+            "useNormalizedOHMUrl": false
           }
         }
       }
@@ -37,7 +37,6 @@
         }
       ]
     },
-
     {
       "name": "mapApplication",
       "srcPath": "./product/mapApplication",
@@ -57,6 +56,18 @@
     {
       "name": "orderlibrary",
       "srcPath": "./features/orderlibrary",
+    },
+    {
+      "name": "common",
+      "srcPath": "./common",
+      "targets": [
+        {
+          "name": "default",
+          "applyToProducts": [
+            "default"
+          ]
+        }
+      ]
     }
   ]
 }
