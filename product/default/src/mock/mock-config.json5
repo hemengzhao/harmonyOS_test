@@ -1,5 +1,5 @@
 {
-  "common": {
-    "source": "src/mock/myhsp.mock.ets"
-  }
+  "@ohos/common": {
+    "source": "src/mock/myhsp.mock.ets",
+  },
 }

@@ -4,6 +4,7 @@
     "pages/task/IndexPage",
     "pages/task/addTaskPage",
     "pages/Page01_media",
-    "pages/Page02"
+    "pages/Page02",
+    "pages/PageDetail"
   ]
 }

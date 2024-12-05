@@ -46,6 +46,8 @@ struct Index {
   }
   build() {
     Column() {
+
+
       Tabs({
         barPosition:this.currentBreakPoint === 'lg' ? BarPosition.Start : BarPosition.End,
         index: this.currentIndex,
@@ -53,7 +55,6 @@ struct Index {
       }){
         TabContent(){
           MainPage()
-
         }.tabBar(this.MyTabBar('首页', 0, $r('app.media.tabbar_home'), $r('app.media.tabbar_home_active')))
 
         TabContent(){

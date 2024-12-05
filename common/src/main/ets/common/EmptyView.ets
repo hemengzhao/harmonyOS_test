@@ -1,6 +1,6 @@
 @Component
 export  struct  EmptyView {
-  private defaultHeight: string = '100%'
+  @Prop defaultHeight: string = '100%'
   build() {
     Flex({
       direction: FlexDirection.Column,

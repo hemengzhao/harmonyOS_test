@@ -214,7 +214,7 @@ export struct MainPage {
 
   @Builder ProductList(){
     if(this.products.length === 0){
-      EmptyView({
+      EmptyView( {
         defaultHeight: '30%'
       })
     } else {
@@ -264,8 +264,10 @@ export struct MainPage {
         .lanes(2)
     }
   }
+
   build() {
     Column() {
+
       Stack({
         alignContent: Alignment.Top
       }) {
