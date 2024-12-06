@@ -1,6 +1,6 @@
 
 import  {mediaquery} from '@kit.ArkUI'
-
+import { http } from "@kit.NetworkKit";
 
 export function add(a: number, b: number): number {
   return a + b;
@@ -148,4 +148,52 @@ export  struct  EmptyView {
     }.width('100%')
     .height(this.defaultHeight)
   }
+}
+
+export class BasicConstants {
+  static readonly  BASE_URL = ''
+}
+
+export function myRequest<T, K>(
+  url: string,
+  method: http.RequestMethod,
+  requestData?: K
+){
+  const httpRequest = http.createHttp()
+  return new Promise((resolve:(value: Record<string, T>) => void,
+    reject: (value?: string)=> void
+  )=> {
+    httpRequest.request(BasicConstants.BASE_URL + url, {
+      method: method,
+      header: {
+        'content-type': "application/json"
+      },
+      extraData: JSON.stringify(requestData) || '',
+      connectTimeout: 6000,
+      readTimeout: 6000
+    }, (err: Error, data: http.HttpResponse) => {
+      if(!err){
+        resolve(JSON.parse(data.result as string))
+      } else {
+        reject(err.message)
+      }
+    })
+  })
+
+}
+
+export function myRequestGet<T, K>(url: string, requestData?: K): Promise<Record<string, T>>{
+  return myRequest(url, http.RequestMethod.GET, requestData)
+}
+
+export function myRequestPost<T, K>(url: string, requestData?: K): Promise<Record<string, T>>{
+  return myRequest(url, http.RequestMethod.POST, requestData)
+}
+
+export function myRequestPut<T, K>(url: string, requestData?: K): Promise<Record<string, T>>{
+  return myRequest(url, http.RequestMethod.PUT, requestData)
+}
+
+export function myRequestDelete<T, K>(url: string, requestData?: K): Promise<Record<string, T>>{
+  return myRequest(url, http.RequestMethod.DELETE, requestData)
 }

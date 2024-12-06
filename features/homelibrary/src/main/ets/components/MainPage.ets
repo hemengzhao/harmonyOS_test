@@ -1,5 +1,7 @@
+import { router } from '@kit.ArkUI';
 import { BreakPointConstants, EmptyView } from '@ohos/common'
-import { ActivityDataModel, SwipeDataModel, ProductDataModel  } from '../viewModel/HomeModel'
+import { ActivityDataModel, SwipeDataModel, ProductDataModel } from '../viewModel/HomeModel'
+
 
 @Builder
 function MySwiper(array: Array<SwipeDataModel>, currentBreakPoint: string) {
@@ -15,7 +17,7 @@ function MySwiper(array: Array<SwipeDataModel>, currentBreakPoint: string) {
   .autoPlay(true)
   .borderRadius(16)
   .height(150)
-  .margin({ top: 20  })
+  .margin({ top: 20 })
   .displayCount(currentBreakPoint === BreakPointConstants.BREAKPOINT_XL ? 3 :
     [BreakPointConstants.BREAKPOINT_LG, BreakPointConstants.BREAKPOINT_MD].includes(currentBreakPoint) ? 2 : 1)
 }
@@ -23,6 +25,7 @@ function MySwiper(array: Array<SwipeDataModel>, currentBreakPoint: string) {
 
 @Component
 export struct MainPage {
+
   @StorageProp('currentBreakPoint') currentBreakPoint: string = 'sm'
   @State message: string = 'Hello World';
   @State swiperList: Array<SwipeDataModel> = [
@@ -90,75 +93,78 @@ export struct MainPage {
       open_type: 'switchTab'
     }
   ]
-  @State products: Array<ProductDataModel> = [{
+  @State products: Array<ProductDataModel> = [
+    {
     id: '12',
     add_time: '15166663280',
-    cat_id:  '3',
-    cat_one_id:  '2',
-    cat_two_id:  '1',
-    cat_three_id:  '1',
-    goods_big_logo:  '',
-    goods_id:  '57266',
+    cat_id: '3',
+    cat_one_id: '2',
+    cat_two_id: '1',
+    cat_three_id: '1',
+    goods_big_logo: '',
+    goods_id: '57266',
     goods_name: '创维 65Mk 65英寸  4K超清数据',
-    goods_number:  '100',
+    goods_number: '100',
     goods_price: '3435',
-    goods_small_logo:  '',
+    goods_small_logo: '',
     goods_weight: '100',
-    hot_number:  '0',
-    is_promote:  false,
+    hot_number: '0',
+    is_promote: false,
     upd_time: '15166663288',
   }, {
-  id: '1122',
-  add_time: '15166663280',
-  cat_id:  '3',
-  cat_one_id:  '2',
-  cat_two_id:  '1',
-  cat_three_id:  '1',
-  goods_big_logo:  '',
-  goods_id:  '57266',
-  goods_name: '创维 65Mk 65英寸  4K超清数据 创维 65Mk 65英寸  4K超清数据 创维 65Mk 65英寸  4K超清数据 创维 65Mk 65英寸  4K超清数据',
-  goods_number:  '100',
-  goods_price: '3435',
-  goods_small_logo:  '',
-  goods_weight: '100',
-  hot_number:  '0',
-  is_promote:  false,
-  upd_time: '15166663288',
-}, {
+    id: '1122',
+    add_time: '15166663280',
+    cat_id: '3',
+    cat_one_id: '2',
+    cat_two_id: '1',
+    cat_three_id: '1',
+    goods_big_logo: '',
+    goods_id: '57266',
+    goods_name: '创维 65Mk 65英寸  4K超清数据 创维 65Mk 65英寸  4K超清数据 创维 65Mk 65英寸  4K超清数据 创维 65Mk 65英寸  4K超清数据',
+    goods_number: '100',
+    goods_price: '3435',
+    goods_small_logo: '',
+    goods_weight: '100',
+    hot_number: '0',
+    is_promote: false,
+    upd_time: '15166663288',
+  }, {
     id: '112122',
     add_time: '15166663280',
-    cat_id:  '3',
-    cat_one_id:  '2',
-    cat_two_id:  '1',
-    cat_three_id:  '1',
-    goods_big_logo:  '',
-    goods_id:  '57266',
+    cat_id: '3',
+    cat_one_id: '2',
+    cat_two_id: '1',
+    cat_three_id: '1',
+    goods_big_logo: '',
+    goods_id: '57266',
     goods_name: '创维 65Mk 65英寸  4K超清数据',
-    goods_number:  '100',
+    goods_number: '100',
     goods_price: '3435',
-    goods_small_logo:  '',
+    goods_small_logo: '',
     goods_weight: '100',
-    hot_number:  '0',
-    is_promote:  false,
+    hot_number: '0',
+    is_promote: false,
     upd_time: '15166663288',
   }, {
     id: '11221',
     add_time: '15166663280',
-    cat_id:  '3',
-    cat_one_id:  '2',
-    cat_two_id:  '1',
-    cat_three_id:  '1',
-    goods_big_logo:  '',
-    goods_id:  '57266',
+    cat_id: '3',
+    cat_one_id: '2',
+    cat_two_id: '1',
+    cat_three_id: '1',
+    goods_big_logo: '',
+    goods_id: '57266',
     goods_name: '创维 65Mk 65英寸  4K超清数据',
-    goods_number:  '100',
+    goods_number: '100',
     goods_price: '3435',
-    goods_small_logo:  '',
+    goods_small_logo: '',
     goods_weight: '100',
-    hot_number:  '0',
-    is_promote:  false,
+    hot_number: '0',
+    is_promote: false,
     upd_time: '15166663288',
   }]
+  private  onChangeItem: (value: string) => void = (value: string) => {}
+
   @Builder
   Search() {
     Column() {
@@ -212,56 +218,64 @@ export struct MainPage {
 
   }
 
-  @Builder ProductList(){
-    if(this.products.length === 0){
-      EmptyView( {
+  @Builder
+  ProductList() {
+    if (this.products.length === 0) {
+      EmptyView({
         defaultHeight: '30%'
       })
     } else {
-        List({
-          space: 10
-        }){
-          ForEach(this.products, (item: ProductDataModel) => {
-            ListItem(){
-              Column(){
-                Image(item.goods_big_logo ? item.goods_big_logo : 'https://img0.baidu.com/it/u=2061919840,1457274808&fm=253&fmt=auto?w=500&h=500')
-                  .width('100%')
-                  .height(150)
+      List({
+        space: 10
+      }) {
+        ForEach(this.products, (item: ProductDataModel) => {
+          ListItem() {
+            Column() {
+              Image(item.goods_big_logo ? item.goods_big_logo :
+                'https://img0.baidu.com/it/u=2061919840,1457274808&fm=253&fmt=auto?w=500&h=500')
+                .width('100%')
+                .height(150)
 
-                Column(){
-                  Text(item.goods_name)
-                    .fontSize(16)
-                    .height(70)
-                    .maxLines(3)
-                    .textOverflow({ overflow: TextOverflow.Ellipsis })
+              Column() {
+                Text(item.goods_name)
+                  .fontSize(16)
+                  .height(70)
+                  .maxLines(3)
+                  .textOverflow({ overflow: TextOverflow.Ellipsis })
 
-                  Row(){
-                    Text(`￥${item.goods_price}`)
-                      .fontSize(18)
-                      .fontColor(Color.Brown)
-                      .width(60)
+                Row() {
+                  Text(`￥${item.goods_price}`)
+                    .fontSize(18)
+                    .fontColor(Color.Brown)
+                    .width(60)
 
-                    Image('https://img2.baidu.com/it/u=817595632,1376698477&fm=253&fmt=auto?w=500&h=500')
-                      .width(30)
-                  }
-                  .width('100%')
-                  .justifyContent(FlexAlign.SpaceBetween)
+                  Image('https://img2.baidu.com/it/u=817595632,1376698477&fm=253&fmt=auto?w=500&h=500')
+                    .width(30)
                 }
-                .padding({
-                  left: 5,
-                  right: 5
-                })
-
+                .width('100%')
+                .justifyContent(FlexAlign.SpaceBetween)
               }
-              .width('96%')
-              .height(260)
-              .backgroundColor(Color.White)
+              .padding({
+                left: 5,
+                right: 5
+              })
 
-            }.width('100%')
-          }, (item: ProductDataModel) => item.id)
+            }
+            .width('96%')
+            .height(260)
+            .backgroundColor(Color.White)
 
-        }
-        .lanes(2)
+          }.width('100%')
+          .onClick(() => {
+            this.onChangeItem(item.id)
+            // router.pushNamedRoute({
+            //   name: 'detail'
+            // })
+          })
+        }, (item: ProductDataModel) => item.id)
+
+      }
+      .lanes(2)
     }
   }
 
@@ -281,8 +295,8 @@ export struct MainPage {
         }) {
           //  搜索模块
           this.Search()
-          Scroll(){
-            Column(){
+          Scroll() {
+            Column() {
               // 轮播图
               MySwiper(this.swiperList, this.currentBreakPoint)
 

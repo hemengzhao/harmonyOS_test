@@ -6,6 +6,7 @@ import  {Cart} from '../view/Cart'
 import  {Personal} from '../view/Personal'
 import  {Product} from '../view/Product'
 import { BasicConstants } from '../Constants/BasicConstants';
+import { router } from "@kit.ArkUI"
 
 @Entry
 @Component
@@ -44,9 +45,15 @@ struct Index {
       this.controller.changeIndex(targetIndex)
     })
   }
+
+  routerPush (value: string) {
+      router.pushUrl({
+        url: 'pages/PageDetail',
+        params: { value: value }
+      })
+  }
   build() {
     Column() {
-
 
       Tabs({
         barPosition:this.currentBreakPoint === 'lg' ? BarPosition.Start : BarPosition.End,
@@ -54,7 +61,9 @@ struct Index {
         controller: this.controller
       }){
         TabContent(){
-          MainPage()
+          MainPage({
+            onChangeItem: this.routerPush
+          })
         }.tabBar(this.MyTabBar('首页', 0, $r('app.media.tabbar_home'), $r('app.media.tabbar_home_active')))
 
         TabContent(){
