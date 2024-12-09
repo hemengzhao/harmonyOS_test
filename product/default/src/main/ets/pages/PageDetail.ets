@@ -96,12 +96,12 @@ struct PageDetail {
     .padding({
       left: 12,
       right: 12,
-      bottom: 26,
-      top:12
+      bottom: 16,
+      top:16
     })
     .width('100%')
     .margin({
-      top: 12
+      top: 12,
     })
   }
 
@@ -152,7 +152,9 @@ struct PageDetail {
         direction: FlexDirection.Column
       }){
         Text(`￥${this.detail.goods_price}`).fontSize(20).fontColor(Color.Brown)
-        Text(this.detail.goods_number).fontSize(16).fontColor(Color.Black)
+        Text(this.detail.goods_name).fontSize(16).fontColor(Color.Black)
+          .maxLines(2)
+          .textOverflow({ overflow: TextOverflow.Ellipsis })
         Row(){
 
         }
@@ -160,6 +162,53 @@ struct PageDetail {
       .boxCommonStyle()
       .height(100)
 
+  }
+
+  @Builder
+  MySelectBar(){
+    Row(){
+      Text('已选').fontSize(16)
+        .fontWeight(FontWeight.Bold)
+        .margin({right: 5})
+      Text('深蓝色 8+125G * 1')
+        .fontSize(16)
+        .fontColor(Color.Grey)
+    }.boxCommonStyle()
+    .alignItems(VerticalAlign.Center)
+  }
+
+
+  @Builder
+  MyAddressBar(){
+    Column(){
+      Row(){
+        Text('送至').margin({right: 10})
+        TextInput({
+          placeholder: '请选择配送地址'
+        })
+      }
+      Row(){
+        Text('服务').margin({right: 10})
+        Column(){
+          Text('免运费').width('100%')
+          Text('店铺直销').width('100%')
+          Text('7天无理由').width('100%')
+        }
+
+      }.width('100%')
+      .alignItems(VerticalAlign.Top)
+
+    }.boxCommonStyle()
+
+  }
+
+  @Builder
+  MyComment(){
+    Row(){
+      List(){
+
+      }.height(350)
+    }.boxCommonStyle()
   }
 
   @Builder ImageAndTextList(img: ResourceStr, title: string){
@@ -242,17 +291,18 @@ struct PageDetail {
             GridCol({
               span: {sm: 4, md: 8, lg: 7},
             }){
-              this.MyTitleBar()
-            }
-
-            GridCol({
-              span: {sm: 4, md: 8, lg: 7},
-            }){
               Column(){
-                Text('商品数据')
-              }.boxCommonStyle()
+                this.MyTitleBar()
+                this.MySelectBar()
+                this.MyAddressBar()
+                this.MyComment()
+              }
+              .width('100%')
+              .padding({left: 10, right: 10})
 
             }
+
+
 
           }
         }.flexGrow(1)
