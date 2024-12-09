@@ -1,7 +1,8 @@
 import {myRequestGet} from '@ohos/common'
 
 export function findSwiperDataApi<T, K>(){
-  return myRequestGet<T, K>('/home/swiperdata')
+  console.log('findSwiperDataApi      =====>')
+  return myRequestGet<T, K>('/harmony/home/swilper')
 }
 
 export function findCatitemsDataApi<T, K>(){

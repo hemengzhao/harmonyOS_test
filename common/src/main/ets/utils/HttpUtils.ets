@@ -7,7 +7,7 @@ export function myRequest<T, K>(
   requestData?: K
 ){
   const httpRequest = http.createHttp()
-  return new Promise((resolve:(value: Record<string, T>) => void,
+  return new Promise((resolve:(value: RequestData<T>) => void,
     reject: (value?: string)=> void
   )=> {
     httpRequest.request(BasicConstants.BASE_URL + url, {
@@ -29,18 +29,24 @@ export function myRequest<T, K>(
 
 }
 
-export function myRequestGet<T, K>(url: string, requestData?: K): Promise<Record<string, T>>{
+
+interface RequestData<T> {
+  status: boolean;
+  message: string;
+  data: T;
+}
+export function myRequestGet<T, K>(url: string, requestData?: K): Promise<RequestData<T>>{
   return myRequest(url, http.RequestMethod.GET, requestData)
 }
 
-export function myRequestPost<T, K>(url: string, requestData?: K): Promise<Record<string, T>>{
+export function myRequestPost<T, K>(url: string, requestData?: K): Promise<RequestData<T>>{
   return myRequest(url, http.RequestMethod.POST, requestData)
 }
 
-export function myRequestPut<T, K>(url: string, requestData?: K): Promise<Record<string, T>>{
+export function myRequestPut<T, K>(url: string, requestData?: K): Promise<RequestData<T>>{
   return myRequest(url, http.RequestMethod.PUT, requestData)
 }
 
-export function myRequestDelete<T, K>(url: string, requestData?: K): Promise<Record<string, T>>{
+export function myRequestDelete<T, K>(url: string, requestData?: K): Promise<RequestData<T>>{
   return myRequest(url, http.RequestMethod.DELETE, requestData)
 }

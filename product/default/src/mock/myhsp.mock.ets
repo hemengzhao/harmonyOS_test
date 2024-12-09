@@ -151,16 +151,20 @@ export  struct  EmptyView {
 }
 
 export class BasicConstants {
-  static readonly  BASE_URL = ''
+  static readonly Full_WIDTH= '100%'
+  static readonly Full_HEIGTH= '100%'
+  static readonly FONT_SIZE_SMALL= '14vp'
+  static readonly FONT_SIZE_NORMAL= '16vp'
+  static readonly FONT_SIZE_BIG= '20vp'
+  static readonly  BASE_URL = 'http://10.21.90.52:3000'
 }
-
 export function myRequest<T, K>(
   url: string,
   method: http.RequestMethod,
   requestData?: K
 ){
   const httpRequest = http.createHttp()
-  return new Promise((resolve:(value: Record<string, T>) => void,
+  return new Promise((resolve:(value: RequestData<T>) => void,
     reject: (value?: string)=> void
   )=> {
     httpRequest.request(BasicConstants.BASE_URL + url, {
@@ -182,18 +186,24 @@ export function myRequest<T, K>(
 
 }
 
-export function myRequestGet<T, K>(url: string, requestData?: K): Promise<Record<string, T>>{
+
+interface RequestData<T> {
+  status: boolean;
+  message: string;
+  data: T;
+}
+export function myRequestGet<T, K>(url: string, requestData?: K): Promise<RequestData<T>>{
   return myRequest(url, http.RequestMethod.GET, requestData)
 }
 
-export function myRequestPost<T, K>(url: string, requestData?: K): Promise<Record<string, T>>{
+export function myRequestPost<T, K>(url: string, requestData?: K): Promise<RequestData<T>>{
   return myRequest(url, http.RequestMethod.POST, requestData)
 }
 
-export function myRequestPut<T, K>(url: string, requestData?: K): Promise<Record<string, T>>{
+export function myRequestPut<T, K>(url: string, requestData?: K): Promise<RequestData<T>>{
   return myRequest(url, http.RequestMethod.PUT, requestData)
 }
 
-export function myRequestDelete<T, K>(url: string, requestData?: K): Promise<Record<string, T>>{
+export function myRequestDelete<T, K>(url: string, requestData?: K): Promise<RequestData<T>>{
   return myRequest(url, http.RequestMethod.DELETE, requestData)
 }

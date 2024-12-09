@@ -1,15 +1,19 @@
 import { router } from '@kit.ArkUI';
 import { BreakPointConstants, EmptyView } from '@ohos/common'
+import { findSwiperDataApi } from '../api/ProcudtApi';
 import { ActivityDataModel, SwipeDataModel, ProductDataModel } from '../viewModel/HomeModel'
 
-
+interface  IMySwiper {
+  swiperList: Array<SwipeDataModel>,
+  currentBreakPoint: string
+}
 @Builder
-function MySwiper(array: Array<SwipeDataModel>, currentBreakPoint: string) {
+function MySwiper($$: IMySwiper) {
   Swiper() {
-    ForEach(array, (item: SwipeDataModel) => {
+    ForEach($$.swiperList, (item: SwipeDataModel) => {
       Image(item.image_src)
         .width('100%')
-    }, (item: SwipeDataModel) => item.id)
+    }, (item: SwipeDataModel) => item.id.toString())
   }
   .indicator(true)
   .itemSpace(1)
@@ -18,8 +22,8 @@ function MySwiper(array: Array<SwipeDataModel>, currentBreakPoint: string) {
   .borderRadius(16)
   .height(150)
   .margin({ top: 20 })
-  .displayCount(currentBreakPoint === BreakPointConstants.BREAKPOINT_XL ? 3 :
-    [BreakPointConstants.BREAKPOINT_LG, BreakPointConstants.BREAKPOINT_MD].includes(currentBreakPoint) ? 2 : 1)
+  .displayCount($$.currentBreakPoint === BreakPointConstants.BREAKPOINT_XL ? 3 :
+    [BreakPointConstants.BREAKPOINT_LG, BreakPointConstants.BREAKPOINT_MD].includes($$.currentBreakPoint) ? 2 : 1)
 }
 
 
@@ -28,71 +32,14 @@ export struct MainPage {
 
   @StorageProp('currentBreakPoint') currentBreakPoint: string = 'sm'
   @State message: string = 'Hello World';
-  @State swiperList: Array<SwipeDataModel> = [
-
-    {
-      id: '112',
-      goods_id: 12,
-      image_src: 'https://img1.baidu.com/it/u=3075258978,381454706&fm=253&fmt=auto&app=120&f=JPEG?w=1422&h=800',
-      navigator_url: '/page/ca',
-      open_type: 'navigate'
-    },
-
-    {
-      id: '121',
-      goods_id: 12,
-      image_src: 'https://iknow-pic.cdn.bcebos.com/78310a55b319ebc4fdc8e3079026cffc1f1716ff',
-      navigator_url: '/page/ca',
-      open_type: 'navigate'
-    },
-
-    {
-      id: '1212',
-      goods_id: 12,
-      image_src: 'https://iknow-pic.cdn.bcebos.com/730e0cf3d7ca7bcba60a76b1ac096b63f624a83f',
-      navigator_url: '/page/ca',
-      open_type: 'navigate'
-    },
-
-    {
-      id: '132',
-      goods_id: 12,
-      image_src: 'https://img-baofun.zhhainiao.com/fs/e590f94250ceecc3c4b197fa40b9db3c.jpg',
-      navigator_url: '/page/ca',
-      open_type: 'navigate'
-    }
-
-  ]
-  @State activityTitle: Array<ActivityDataModel> = [
-    {
-      id: '12',
-      name: '旅行日记',
-      image_src: 'https://pic.baike.soso.com/ugc/baikepic2/33215/20171118145305-519083113_png_4779_3467_317321.jpg/0',
-      navigator_url: '/page/ca',
-      open_type: 'switchTab'
-    },
-    {
-      id: '121',
-      name: '旅行日记',
-      image_src: 'https://pic.baike.soso.com/ugc/baikepic2/33215/20171118145305-519083113_png_4779_3467_317321.jpg/0',
-      navigator_url: '/page/ca',
-      open_type: 'switchTab'
-    },
-    {
-      id: '1212',
-      name: '旅行日记',
-      image_src: 'https://pic.baike.soso.com/ugc/baikepic2/33215/20171118145305-519083113_png_4779_3467_317321.jpg/0',
-      navigator_url: '/page/ca',
-      open_type: 'switchTab'
-    },
-    {
-      id: '1223',
-      name: '旅行日记',
-      image_src: 'https://pic.baike.soso.com/ugc/baikepic2/33215/20171118145305-519083113_png_4779_3467_317321.jpg/0',
-      navigator_url: '/page/ca',
-      open_type: 'switchTab'
-    }
-  ]
+  @State swiperList: Array<SwipeDataModel> = []
+  @State activityTitle: Array<ActivityDataModel> = [{
+    id: '12',
+    name: '旅行日记',
+    image_src: 'https://pic.baike.soso.com/ugc/baikepic2/33215/20171118145305-519083113_png_4779_3467_317321.jpg/0',
+    navigator_url: '/page/ca',
+    open_type: 'switchTab'
+  }]
   @State products: Array<ProductDataModel> = [
     {
     id: '12',
@@ -164,7 +111,13 @@ export struct MainPage {
     upd_time: '15166663288',
   }]
   private  onChangeItem: (value: string) => void = (value: string) => {}
-
+  fetchSwiperDataApi = async () => {
+    const result = await findSwiperDataApi<Array<SwipeDataModel>, null>()
+    this.swiperList = result.data
+  }
+  aboutToAppear(): void {
+    this.fetchSwiperDataApi()
+  }
   @Builder
   Search() {
     Column() {
@@ -298,7 +251,10 @@ export struct MainPage {
           Scroll() {
             Column() {
               // 轮播图
-              MySwiper(this.swiperList, this.currentBreakPoint)
+              MySwiper({
+                swiperList: this.swiperList,
+                currentBreakPoint: this.currentBreakPoint
+              })
 
               // 楼诚
               this.MyNav()
