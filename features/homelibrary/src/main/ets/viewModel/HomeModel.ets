@@ -2,11 +2,13 @@
  * 约束轮播图的数据格式
  * */
 export class  SwipeDataModel {
-  id: string = ''
+  id: number = 0
   goods_id: number = 0
   image_src: string = ''
   navigator_url: string = ''
   open_type: string = ''
+  createdAt: string = ''
+  updatedAt: string = ''
 }
 /**
  * 约束数据楼层的数据格式
