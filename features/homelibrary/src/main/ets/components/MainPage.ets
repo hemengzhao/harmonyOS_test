@@ -1,6 +1,6 @@
 import { router } from '@kit.ArkUI';
 import { BreakPointConstants, EmptyView } from '@ohos/common'
-import { findSwiperDataApi } from '../api/ProcudtApi';
+import { findSwiperDataApi, findCatitemsDataApi } from '../api/ProcudtApi';
 import { ActivityDataModel, SwipeDataModel, ProductDataModel } from '../viewModel/HomeModel'
 
 interface  IMySwiper {
@@ -33,13 +33,7 @@ export struct MainPage {
   @StorageProp('currentBreakPoint') currentBreakPoint: string = 'sm'
   @State message: string = 'Hello World';
   @State swiperList: Array<SwipeDataModel> = []
-  @State activityTitle: Array<ActivityDataModel> = [{
-    id: '12',
-    name: '旅行日记',
-    image_src: 'https://pic.baike.soso.com/ugc/baikepic2/33215/20171118145305-519083113_png_4779_3467_317321.jpg/0',
-    navigator_url: '/page/ca',
-    open_type: 'switchTab'
-  }]
+  @State activityTitle: Array<ActivityDataModel> = []
   @State products: Array<ProductDataModel> = [
     {
     id: '12',
@@ -115,8 +109,14 @@ export struct MainPage {
     const result = await findSwiperDataApi<Array<SwipeDataModel>, null>()
     this.swiperList = result.data
   }
+
+  fetchActivity = async () => {
+    const result = await findCatitemsDataApi<Array<ActivityDataModel>, null>()
+    this.activityTitle = result.data
+  }
   aboutToAppear(): void {
     this.fetchSwiperDataApi()
+    this.fetchActivity()
   }
   @Builder
   Search() {
@@ -156,7 +156,7 @@ export struct MainPage {
           .justifyContent(FlexAlign.Center)
 
         }
-      }, (item: ActivityDataModel) => item.id)
+      }, (item: ActivityDataModel) => item.id.toString())
 
     }
     .rowsTemplate('1fr 1fr')

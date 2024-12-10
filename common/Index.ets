@@ -7,3 +7,6 @@ export { BreakPointConstants } from './src/main/ets/constants/BreadkPointConstan
 export { BasicConstants } from './src/main/ets/constants/BasicConstants'
 
 export {  myRequestGet, myRequestPost, myRequestPut, myRequestDelete } from './src/main/ets/utils/HttpUtils'
+
+export {MyDataSource} from './src/main/ets/utils/MyDataSource'
+export  {cartDBUtils} from './src/main/ets/utils/CartDBUtils'

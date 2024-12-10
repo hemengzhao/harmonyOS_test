@@ -1,7 +1,7 @@
 import { router } from '@kit.ArkUI'
-import { BreakPointSystem } from '@ohos/common';
+import { BreakPointSystem, MyDataSource } from '@ohos/common';
 import { findProductById } from '../api/ProductApi';
-import { ProductDetailData } from '../viewmodel/Deatil';
+import { Evaluate, ProductDetailData } from '../viewmodel/Deatil';
 import { ParamsType } from '../viewmodel/ParamsModel';
 
 @Extend(Button)
@@ -78,12 +78,17 @@ struct PageDetail {
   }
   @StorageProp('currentBreakPoint') currentBreakPoint: string = 'sm'
   private  breakPointSystem: BreakPointSystem = new BreakPointSystem()
+  private data: MyDataSource<Evaluate> = new MyDataSource();
 
   @State currIndex: number = 0
   aboutToAppear(): void {
+
+    this.data.pushAllData(this.detail.evaluate)
+
     this.breakPointSystem.register()
-    const params = router.getParams()
-    const id = (params as ParamsType<string>).value
+    // const params = router.getParams()
+    // const id = (params as ParamsType<string>).value
+  // console.log('id===>'+ id)
   }
 
   fetchDetailData = async (id: string) => {
@@ -205,8 +210,16 @@ struct PageDetail {
   @Builder
   MyComment(){
     Row(){
+      // Text('item.desc').fontSize(30)
       List(){
-
+        LazyForEach(this.data, (item: Evaluate) => {
+          ListItem() {
+             Column(){
+               Text(item.userNumber).fontColor(Color.Black).fontSize(18).fontWeight(FontWeight.Bold).width('100%')
+               Text(item.desc).fontColor(Color.Grey).fontSize(16).maxLines(2).textOverflow({ overflow: TextOverflow.Ellipsis }).width('100%')
+             }
+          }.margin({bottom: 20})
+        }, (item: Evaluate) => item.userId)
       }.height(350)
     }.boxCommonStyle()
   }

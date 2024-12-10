@@ -14,11 +14,13 @@ export class  SwipeDataModel {
  * 约束数据楼层的数据格式
  * */
 export class  ActivityDataModel {
-  id: string = ''
+  id: number = 0
   name: string = ''
   image_src: string = ''
   navigator_url: string = ''
   open_type: string = ''
+  createdAt: string = ''
+  updatedAt: string = ''
 }
 
 /**

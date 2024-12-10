@@ -5,6 +5,7 @@
     "pages/task/addTaskPage",
     "pages/Page01_media",
     "pages/Page02",
-    "pages/PageDetail"
+    "pages/PageDetail",
+    "pages/LazyForEachPage"
   ]
 }

@@ -6,7 +6,7 @@ export function findSwiperDataApi<T, K>(){
 }
 
 export function findCatitemsDataApi<T, K>(){
-  return myRequestGet<T, K>('/home/catitems')
+  return myRequestGet<T, K>('/harmony/activityType')
 }
 
 export function findProductDataApi<T, K>(){
