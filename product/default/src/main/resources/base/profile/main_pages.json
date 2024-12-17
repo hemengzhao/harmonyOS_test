@@ -6,6 +6,7 @@
     "pages/Page01_media",
     "pages/Page02",
     "pages/PageDetail",
-    "pages/LazyForEachPage"
+    "pages/LazyForEachPage",
+    "pages/PageCart"
   ]
 }

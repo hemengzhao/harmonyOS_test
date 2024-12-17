@@ -10,3 +10,4 @@ export {  myRequestGet, myRequestPost, myRequestPut, myRequestDelete } from './s
 
 export {MyDataSource} from './src/main/ets/utils/MyDataSource'
 export  {cartDBUtils} from './src/main/ets/utils/CartDBUtils'
+export  {CartModel} from './src/main/ets/viewModel/CartModel'
