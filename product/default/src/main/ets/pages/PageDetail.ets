@@ -3,7 +3,8 @@ import { BreakPointSystem, MyDataSource } from '@ohos/common';
 import { findProductById } from '../api/ProductApi';
 import { Evaluate, ProductDetailData } from '../viewmodel/Deatil';
 import { ParamsType } from '../viewmodel/ParamsModel';
-
+import { relationalStore } from '@kit.ArkData';
+import {cartDBUtils} from '@ohos/common'
 @Extend(Button)
 function myTopBtn() {
   .backgroundColor(Color.Grey)
@@ -231,9 +232,29 @@ struct PageDetail {
     }.justifyContent(FlexAlign.Center).height('100%').width('100%')
   }
 
+
+  addCart = () => {
+    console.log('addCart start')
+    const data:  relationalStore.ValuesBucket = {
+      'GOODS_NAME': this.detail.goods_name,
+      'GOODS_COUNT': 1,
+      'GOODS_BIG_LOGO': this.detail.goods_big_logo,
+      'GOODS_CODE':  this.detail.goods_id,
+      'GOODS_PRICE': Number(this.detail.goods_price),
+      'GOODS_CHECKED': 0
+    }
+    console.log(JSON.stringify(data))
+    cartDBUtils.insertDataDB('MYCART', data)
+  }
+
+  purchase = () => {
+    router.pushUrl({
+      url: 'pages/PageCart'
+    })
+  }
+
   @Builder
   MyFooter() {
-
     GridRow({
       columns: {sm: 6, md: 10,lg: 12}
     }) {
@@ -261,14 +282,14 @@ struct PageDetail {
             topRight: 0,
             bottomLeft: 20,
             bottomRight: 0
-          })
+          }).onClick(() => this.addCart())
 
           Text('立即购买').myFotBtn(Color.Red, {
             topLeft: 0,
             topRight: 20,
             bottomLeft: 0,
             bottomRight: 20
-          })
+          }).onClick(() => this.purchase())
         }
         .height('100%')
         .width('100%')

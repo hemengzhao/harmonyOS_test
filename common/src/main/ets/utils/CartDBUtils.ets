@@ -1,4 +1,6 @@
 import { relationalStore } from "@kit.ArkData";
+import { BusinessError } from "@kit.BasicServicesKit";
+import {CartModel} from '../viewModel/CartModel'
 
 class  CartDBUtils {
   private rdbStore: relationalStore.RdbStore | null = null
@@ -54,20 +56,107 @@ class  CartDBUtils {
   /**
    * 添加数据到数据库
    * @param  tableName  创建表的名字
+   * @param  value       要添加的数据
    * */
-  insertDataDB(tableName: string){
-
+  insertDataDB(tableName: string, value: relationalStore.ValuesBucket){
+      if(this.rdbStore !== null){
+        this.rdbStore.insert(tableName, value, (err: BusinessError, rowId: number) => {
+          if(err){
+            console.log(`往${tableName}中添加数据失败}, ${err.code}-- ${err.name}-- ${err.message}`)
+            return
+          }
+          console.log(`往${tableName}中添加数据成功}, rowId: ${rowId}`)
+        })
+      }
   }
 
   /**
    * 查询数据
-   * @param  column  投影列
+   * @param  column  投影列 ['ID', 'NAME']
    * @param  tableName  创建表的名字
    * */
-  queryDataDB(column: Array<string>, tableName: string){
+  async queryDataDB(column: Array<string>, tableName: string, id?: number){
+    //   获取要操作的对象
+    let predicates1 = new relationalStore.RdbPredicates(tableName);
+    if(id){
+      // 筛选条件, 选中的指定数据
+      predicates1.equalTo('ID', id);
+    }
 
+    let carts: Array<CartModel> = [];
+    // 查询数据得到是一个结果集
+    // 想办法将结果集转化为CartModel
+   const resultSet = await (this.rdbStore as relationalStore.RdbStore).query(predicates1, column)
+    while (resultSet.goToNextRow()){
+       // getColumnIndex找到数据库中指定某一行的列名
+       // getString将指定列表的数据获取到
+       const id = resultSet.getLong(resultSet.getColumnIndex('ID'))
+      const goods_name = resultSet.getString(resultSet.getColumnIndex('GOODS_NAME'))
+      const goods_big_logo = resultSet.getString(resultSet.getColumnIndex('GOODS_BIG_LOGO'))
+      const goods_code = resultSet.getString(resultSet.getColumnIndex('GOODS_CODE'))
+      const goods_price = resultSet.getDouble(resultSet.getColumnIndex('GOODS_PRICE'))
+      const goods_count = resultSet.getLong(resultSet.getColumnIndex('GOODS_COUNT'))
+      const goods_checked = resultSet.getLong(resultSet.getColumnIndex('GOODS_CHECKED'))
+
+      const temp =new CartModel()
+      temp.id = id
+      temp.goods_name = goods_name
+      temp.goods_big_logo = goods_big_logo
+      temp.goods_code = goods_code
+      temp.goods_price = goods_price
+      temp.goods_count = goods_count
+      temp.goods_checked = goods_checked
+
+      carts.push(temp)
+    }
+    // 释放内存结果集
+    resultSet.close()
+    return carts
+  }
+  /**
+   * 修改数据
+   * @param  tableName  投影列
+   * @param  id  修改的商品编号
+   * @param  value  修改的字段
+   * @returns rows  修改影响行
+   * */
+  updateById(tableName: string, id: number, value: relationalStore.ValuesBucket){
+    //   获取要操作的对象
+    let predicates1 = new relationalStore.RdbPredicates(tableName);
+    // 筛选条件, 选中的指定数据
+    predicates1.equalTo('ID', id);
+    if (this.rdbStore !== null) {
+      this.rdbStore.update(value, predicates1, (err: BusinessError, rows: number) => {
+        if (err) {
+          console.error(`修改失败. Code:${err.code}, message:${err.message}`);
+          return;
+        }
+        console.info(`修改成功 rows: ${rows}`);
+      })
+    }
   }
 
+  /**
+ * 删除指定数据
+ * @param  tableName   表的名字
+ *  @param  id
+ * */
+ deleteById(tableName: string, id: number){
+  //   获取要操作的对象
+  let predicates1 = new relationalStore.RdbPredicates(tableName);
+   // 筛选条件, 选中的指定数据
+   predicates1.equalTo('ID', id);
+
+   if (this.rdbStore !== null) {
+     (this.rdbStore as relationalStore.RdbStore).delete(predicates1, (err: BusinessError, rows: number) => {
+       if (err) {
+         console.error(`删除失败. Code:${err.code}, message:${err.message}`);
+         return;
+       }
+       console.info(`删除成功 rows: ${rows}`);
+     })
+   }
+ }
 }
 
 const cartDBUtils = new CartDBUtils()

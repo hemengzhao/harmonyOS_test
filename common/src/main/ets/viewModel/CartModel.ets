@@ -1,6 +1,6 @@
 export class CartModel {
-  id?:number
-  goods_name?:string
+  id?: number
+  goods_name?: string
   goods_big_logo?: string
   goods_code?:string
   goods_price?:number
