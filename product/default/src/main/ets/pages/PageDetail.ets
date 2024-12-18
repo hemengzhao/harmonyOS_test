@@ -272,6 +272,12 @@ struct PageDetail {
         this.ImageAndTextList($r('app.media.tabbar_car'), '购物车')
       }.height('100%')
       .width('100%')
+      .onClick(() => {
+        console.log('asdsa')
+        router.pushUrl({
+          url: 'pages/PageCart'
+        })
+      })
 
       GridCol({
         span: { sm: 4, md: 4, lg: 6 }
