@@ -1,7 +1,7 @@
 import { AbilityConstant, ConfigurationConstant, UIAbility, Want } from '@kit.AbilityKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { window } from '@kit.ArkUI';
-import { cartDBUtils } from '@ohos/common';
+import { cartDBUtils, preferencesUtil } from '@ohos/common';
 
 export default class EntryAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
@@ -19,6 +19,9 @@ export default class EntryAbility extends UIAbility {
     cartDBUtils.initCartDB(this.context, 'MYCART')
 
 
+    // 初始化preferencesUtil
+    preferencesUtil.init(this.context, 'myStore')
+    preferencesUtil.insert('theme', 'pink')
     // Main window is created, set main page for this ability
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowStageCreate');
 

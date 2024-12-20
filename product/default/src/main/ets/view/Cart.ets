@@ -1,33 +1,38 @@
-import { CartModel, EmptyView } from '@ohos/common'
+import { cartDBUtils, CartModel, EmptyView } from '@ohos/common'
 import { ProductItem } from './ProductItem'
-
+@Entry
 @Component
 export struct Cart {
-  @State selectAll: boolean = false
+  @State @Watch('checkoutAll')  selectAll: boolean = false
   @State sumPrice: number = 0
-  @State carts: CartModel[] = []
+  @State   carts: CartModel[] = []
 
+  computedTotalPrice = () => {
+
+     const result =  this.carts.reduce((sum: number, item:CartModel ) =>{
+        if(item.goods_checked){
+          sum += (item.goods_price as number) * (item.goods_count as number)
+        }
+       return sum
+     }, 0)
+    this.sumPrice = result
+  }
+
+  checkoutAll(targetKey: string) {
+    console.log('targetKey: ' + targetKey)
+    this.carts.forEach((item: CartModel) => {
+      item.goods_checked = this.selectAll ? 1 : 0
+    })
+  }
+
+  findDBCartData =async () => {
+   const res = await cartDBUtils.queryDataDB(['ID', 'GOODS_NAME', 'GOODS_COUNT', 'GOODS_BIG_LOGO', 'GOODS_CODE', 'GOODS_PRICE', 'GOODS_CHECKED'], 'MYCART')
+    console.log(`findDBCartData ===> res: ${JSON.stringify(res)}`)
+   this.carts = res
+  }
   aboutToAppear(): void {
-    const cart1 = new CartModel()
-    cart1.id = 1
-    cart1.goods_name = '阿是大赛'
-    cart1.goods_big_logo = 'asdas'
-    cart1.goods_code = '001'
-    cart1.goods_price = 321
-    cart1.goods_count = 1
-    cart1.goods_checked = 0
+    this.findDBCartData()
 
-    const cart2 = new CartModel()
-    cart2.id = 2
-    cart2.goods_name = '阿是大赛'
-    cart2.goods_big_logo = 'asdas'
-    cart2.goods_code = '002'
-    cart2.goods_price = 321
-    cart2.goods_count = 1
-    cart2.goods_checked = 0
-
-    this.carts.push(cart1)
-    this.carts.push(cart2)
   }
 
   @Builder
@@ -36,9 +41,10 @@ export struct Cart {
       Row() {
         Checkbox({
           name: "checkbox", group: 'checkboxGroup'
-        }).selectedColor('@ed6f21')
+        }).selectedColor('#ed6f21')
           .select(this.selectAll).onClick(() => {
           this.selectAll = !this.selectAll
+
         })
         Text('全选').fontSize(14).fontColor(Color.Gray)
       }
@@ -69,6 +75,13 @@ export struct Cart {
     .justifyContent((FlexAlign.SpaceBetween))
   }
 
+  @Builder itemEnd(index: number){
+    Row(){
+      Button('删除').onClick(() => {
+          this.carts.splice(index, 1)
+      })
+    }
+  }
   build() {
     Flex({ direction: FlexDirection.Column }) {
       Text('购物车')
@@ -79,13 +92,23 @@ export struct Cart {
         .padding({ left: 24 })
 
       Scroll() {
-        Column() {
+        Column( ) {
           if (this.carts.length === 0) {
             EmptyView()
           } else {
-            ForEach(this.carts, (item: CartModel, index: number) => {
-              ProductItem()
-            }, (item: CartModel, index: number) => item.id?.toString())
+            List({space: 20}){
+              ForEach(this.carts, (item: CartModel, index: number) => {
+                ListItem(){
+                  ProductItem({Item: item, computedTotalPrice: this.computedTotalPrice})
+                }
+                .swipeAction({
+                  end: {
+                    builder: () => {this.itemEnd(index)}
+                  }
+                })
+              }, (item: CartModel, index: number) => item.id?.toString())
+            }
+
           }
         }
         .width('100%')
@@ -97,6 +120,6 @@ export struct Cart {
       .flexGrow(1)
 
       this.ButtonMenu()
-    }
+    }.backgroundColor('#f1f3f5')
   }
 }

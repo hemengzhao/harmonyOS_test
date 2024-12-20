@@ -1,5 +1,4 @@
-import { MyDataSource } from '@ohos/common';
-
+import { MyDataSource, preferencesUtil } from '@ohos/common';
 interface MyObj {
   name: string
   id: number
@@ -10,6 +9,7 @@ struct MyComponent {
   private data: MyDataSource<MyObj> = new MyDataSource();
 
   aboutToAppear() {
+    preferencesUtil.readData('theme')
     for (let i = 0; i <= 100; i++) {
       this.data.pushData({
         name: '那么name'+i,

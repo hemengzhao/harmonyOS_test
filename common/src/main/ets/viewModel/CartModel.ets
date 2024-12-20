@@ -1,3 +1,4 @@
+@Observed
 export class CartModel {
   id?: number
   goods_name?: string
