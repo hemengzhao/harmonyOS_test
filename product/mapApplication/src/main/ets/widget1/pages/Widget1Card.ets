@@ -5,6 +5,8 @@ let storageUpdateRouter = new LocalStorage();
 @Component
 struct Widget1Card {
   @LocalStorageProp('routerDetail') routerDetail: string = '播放进度';
+  @LocalStorageProp('title') title: ResourceStr = 'title';
+
   /*
    * The title.
    */
@@ -39,7 +41,8 @@ struct Widget1Card {
           .fontColor($r('app.color.item_title_font'))
 
         Flex({
-          justifyContent: FlexAlign.SpaceBetween
+          justifyContent: FlexAlign.SpaceBetween,
+          wrap: FlexWrap.Wrap
         }){
           Button('主页').onClick(() => {
             postCardAction(this, {
@@ -60,7 +63,7 @@ struct Widget1Card {
             })
           })
 
-          Button('更新').onClick(() => {
+          Button('router更新').onClick(() => {
             postCardAction(this, {
               action: this.ACTION_TYPE,
               abilityName: this.ABILITY_NAME,
@@ -68,6 +71,13 @@ struct Widget1Card {
                 routerDetail: 'RouterFromCard',
               }
             })
+          })
+
+          Button('message更新').onClick(() => {
+            postCardAction(this, {
+              action: 'message',
+              params: { msgTest: 'messageEvent' }
+            });
           })
         }.width('100%')
       }

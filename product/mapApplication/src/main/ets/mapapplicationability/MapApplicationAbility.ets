@@ -14,7 +14,11 @@ export default class MapApplicationAbility extends UIAbility {
   // 当前的窗口对象
   private currentWindowStage: window.WindowStage | null = null
 
-
+  /**
+   * 更新函数
+   * @param want
+   * @param source
+   * */
   handleFormRouterEvent(want: Want, source: string): void{
     // 判断是否有parameters   以及是否有要更新的key
     if (want.parameters && want.parameters[formInfo.FormParam.IDENTITY_KEY] !== undefined) {
