@@ -7,6 +7,7 @@
     "pages/Page02",
     "pages/PageDetail",
     "pages/LazyForEachPage",
-    "pages/PageCart"
+    "pages/PageCart",
+    "pages02/PayPage"
   ]
 }

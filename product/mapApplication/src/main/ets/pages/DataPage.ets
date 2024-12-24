@@ -1,12 +1,12 @@
 @Entry
 @Component
-struct Index {
-  @State message: string = '医疗服务';
+struct DataPage {
+  @State message: string = '数据中心';
 
   build() {
     RelativeContainer() {
       Text(this.message)
-        .id('HelloWorld')
+        .id('DataPageHelloWorld')
         .fontSize(50)
         .fontWeight(FontWeight.Bold)
         .alignRules({

@@ -5,6 +5,9 @@ import { Evaluate, ProductDetailData } from '../viewmodel/Deatil';
 import { ParamsType } from '../viewmodel/ParamsModel';
 import { relationalStore } from '@kit.ArkData';
 import {cartDBUtils} from '@ohos/common'
+import { common, Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 @Extend(Button)
 function myTopBtn() {
   .backgroundColor(Color.Grey)
@@ -248,9 +251,32 @@ struct PageDetail {
   }
 
   purchase = () => {
-    router.pushUrl({
-      url: 'pages/PageCart'
-    })
+
+    try {
+      let want: Want = {
+        bundleName: 'com.example.myapplication',
+        abilityName: 'PayAbility'
+      };
+      const context =  getContext(this) as common.UIAbilityContext
+      context.startAbility(want, (err: BusinessError) => {
+        if (err.code) {
+          // 处理业务逻辑错误
+          console.error(`startAbility failed, code is ${err.code}, message is ${err.message}`);
+          return;
+        }
+        // 执行正常业务
+        console.info('startAbility succeed');
+        // router.pushUrl({
+        //   url: 'pages02/PayPage'
+        // })
+      })
+    } catch (err) {
+      // 处理入参错误异常
+      let code = (err as BusinessError).code;
+      let message = (err as BusinessError).message;
+      console.error(`startAbility failed, code is ${code}, message is ${message}`);
+    }
+
   }
 
   @Builder

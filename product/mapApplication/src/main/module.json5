@@ -23,6 +23,21 @@
         "startWindowBackground": "$color:start_window_background",
         "exported": true
       }
+    ],
+    "extensionAbilities": [
+      {
+        "name": "MapApplicationFormAbility",
+        "srcEntry": "./ets/mapapplicationformability/MapApplicationFormAbility.ets",
+        "label": "$string:MapApplicationFormAbility_label",
+        "description": "$string:MapApplicationFormAbility_desc",
+        "type": "form",
+        "metadata": [
+          {
+            "name": "ohos.extension.form",
+            "resource": "$profile:form_config"
+          }
+        ]
+      }
     ]
   }
 }

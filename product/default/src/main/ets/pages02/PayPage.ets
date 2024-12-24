@@ -1,12 +1,12 @@
 @Entry
 @Component
-struct Index {
-  @State message: string = '医疗服务';
+struct PayPage {
+  @State message: string = '支付页面';
 
   build() {
     RelativeContainer() {
       Text(this.message)
-        .id('HelloWorld')
+        .id('PayPageHelloWorld')
         .fontSize(50)
         .fontWeight(FontWeight.Bold)
         .alignRules({

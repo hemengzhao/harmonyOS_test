@@ -11,6 +11,62 @@
     {
       "name": "MapApplicationAbility_label",
       "value": "label"
+    },
+    {
+      "name": "MapApplicationFormAbility_desc",
+      "value": "form_description"
+    },
+    {
+      "name": "MapApplicationFormAbility_label",
+      "value": "form_label"
+    },
+    {
+      "name": "widget_desc",
+      "value": "This is a service widget."
+    },
+    {
+      "name": "widget_display_name",
+      "value": "widget"
+    },
+    {
+      "name": "card_list_title",
+      "value": "Title"
+    },
+    {
+      "name": "card_list_content",
+      "value": "Introduction"
+    },
+    {
+      "name": "widget_search",
+      "value": "发现更多"
+    },
+    {
+      "name": "widget_explored",
+      "value": "探索"
+    },
+    {
+      "name": "widget_study",
+      "value": "学习"
+    },
+    {
+      "name": "widget_activity",
+      "value": "活动"
+    },
+    {
+      "name": "widget_mine",
+      "value": "我的"
+    },
+    {
+      "name": "widget_more",
+      "value": "更多信息"
+    },
+    {
+      "name": "widget1_desc",
+      "value": "This is a service widget."
+    },
+    {
+      "name": "widget1_display_name",
+      "value": "widget1"
     }
   ]
 }
