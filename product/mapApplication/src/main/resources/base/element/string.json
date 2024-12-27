@@ -67,6 +67,18 @@
     {
       "name": "widget1_display_name",
       "value": "widget1"
+    },
+    {
+      "name": "location",
+      "value": "申请获取定位权限"
+    },
+    {
+      "name": "approximately_location",
+      "value": "申请获取模糊定位权限"
+    },
+    {
+      "name": "microphone",
+      "value": "允许应用使用麦克风。"
     }
   ]
 }

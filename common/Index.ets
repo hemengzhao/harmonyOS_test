@@ -15,3 +15,4 @@ export  {CartModel} from './src/main/ets/viewModel/CartModel'
 
 export  {preferencesUtil} from './src/main/ets/utils/PreferencesUtil'
 export  {kvStore} from './src/main/ets/utils/KVStore'
+export {FileUpload} from './src/main/ets/utils/FileUpload'

@@ -38,6 +38,44 @@
           }
         ]
       }
+    ],
+    "requestPermissions": [
+      {
+        "name": "ohos.permission.INTERNET"
+      },
+      //      获取应用设备定位
+      {
+        "name" : "ohos.permission.LOCATION",
+        "reason": "$string:location",
+        "usedScene": {
+          "abilities": [
+            "FormAbility"
+          ],
+          "when":"inuse"
+        }
+      },
+      //  申请获取模糊定位权限
+      {
+        "name" : "ohos.permission.APPROXIMATELY_LOCATION",
+        "reason": "$string:approximately_location",
+        "usedScene": {
+          "abilities": [
+            "FormAbility"
+          ],
+          "when":"inuse"
+        }
+      },
+      //  允许应用使用麦克风。
+      {
+        "name" : "ohos.permission.MICROPHONE",
+        "reason": "$string:microphone",
+        "usedScene": {
+          "abilities": [
+            "FormAbility"
+          ],
+          "when":"inuse"
+        }
+      }
     ]
   }
 }

@@ -78,6 +78,19 @@ struct Widget1Card {
               action: 'message',
               params: { msgTest: 'messageEvent' }
             });
+
+              // 可以实现拉起ability
+              postCardAction(this, {
+                action: this.ACTION_TYPE,
+
+                // ability名字
+                abilityName: this.ABILITY_NAME,
+
+                // 传递的参数
+                params: {
+                  message: this.MESSAGE
+                }
+              });
           })
         }.width('100%')
       }

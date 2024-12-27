@@ -1,3 +1,5 @@
+import { FileUpload } from '@ohos/common';
+
 @Entry
 @Component
 struct DataPage {
@@ -13,6 +15,11 @@ struct DataPage {
           center: { anchor: '__container__', align: VerticalAlign.Center },
           middle: { anchor: '__container__', align: HorizontalAlign.Center }
         })
+
+      Button('点击上传').onClick(() => {
+
+        // FileUpload()
+      })
     }
     .height('100%')
     .width('100%')
