@@ -68,6 +68,18 @@
           ]
         }
       ]
+    },
+    {
+      "name": "walkApplication",
+      "srcPath": "./product/walkApplication",
+      "targets": [
+        {
+          "name": "default",
+          "applyToProducts": [
+            "default"
+          ]
+        }
+      ]
     }
   ]
 }

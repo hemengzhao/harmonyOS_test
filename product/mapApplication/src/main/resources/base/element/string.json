@@ -79,6 +79,14 @@
     {
       "name": "microphone",
       "value": "允许应用使用麦克风。"
+    },
+    {
+      "name": "widget2_desc",
+      "value": "This is a service widget."
+    },
+    {
+      "name": "widget2_display_name",
+      "value": "widget2"
     }
   ]
 }

@@ -45,7 +45,7 @@ export struct Cart {
           .select(this.selectAll).onClick(() => {
           this.selectAll = !this.selectAll
 
-        })
+          })
         Text('全选').fontSize(14).fontColor(Color.Gray)
       }
 

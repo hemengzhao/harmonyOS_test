@@ -1,0 +1,112 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "WalkApplicationAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "WalkApplicationAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "login",
+      "value": "login"
+    },
+    {
+      "name": "login_placeholder",
+      "value": "Please enter phone number"
+    },
+    {
+      "name": "pass_placeholder",
+      "value": "Please enter passwork"
+    },
+    {
+      "name": "forgot_pass",
+      "value": "forgot password"
+    },
+    {
+      "name": "immediately_register",
+      "value": "Register Now"
+    },
+    {
+      "name": "no_account",
+      "value": "Account not yet created"
+    },
+    {
+      "name": "i_agree",
+      "value": "I agree"
+    },
+    {
+      "name": "service_terms",
+      "value": "service terms"
+    },
+    {
+      "name": "privacy_policy",
+      "value": "privacy policy"
+    },
+    {
+      "name": "login_and",
+      "value": "and"
+    },
+    {
+      "name": "WalkApplicationFormAbility_desc",
+      "value": "form_description"
+    },
+    {
+      "name": "WalkApplicationFormAbility_label",
+      "value": "form_label"
+    },
+    {
+      "name": "widget_desc",
+      "value": "This is a service widget."
+    },
+    {
+      "name": "widget_display_name",
+      "value": "widget"
+    },
+    {
+      "name": "card_list_title",
+      "value": "Title"
+    },
+    {
+      "name": "card_list_content",
+      "value": "Introduction"
+    },
+    {
+      "name": "widget_search",
+      "value": "discover more"
+    },
+    {
+      "name": "widget_explored",
+      "value": "explored"
+    },
+    {
+      "name": "widget_study",
+      "value": "study"
+    },
+    {
+      "name": "widget_activity",
+      "value": "activity"
+    },
+    {
+      "name": "widget_mine",
+      "value": "mine"
+    },
+    {
+      "name": "widget_more",
+      "value": "more Info"
+    },
+    {
+      "name": "walkWidget_desc",
+      "value": "This is a service widget."
+    },
+    {
+      "name": "walkWidget_display_name",
+      "value": "walkWidget"
+    }
+  ]
+}

@@ -1,0 +1,112 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "WalkApplicationAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "WalkApplicationAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "login",
+      "value": "登录"
+    },
+    {
+      "name": "login_placeholder",
+      "value": "请输入电话号码"
+    },
+    {
+      "name": "pass_placeholder",
+      "value": "请输入密码"
+    },
+    {
+      "name": "forgot_pass",
+      "value": "忘记密码"
+    },
+    {
+      "name": "immediately_register",
+      "value": "立即注册"
+    },
+    {
+      "name": "no_account",
+      "value": "还未创建账号"
+    },
+    {
+      "name": "i_agree",
+      "value": "我同意"
+    },
+    {
+      "name": "service_terms",
+      "value": "服务条款"
+    },
+    {
+      "name": "privacy_policy",
+      "value": "隐私政策"
+    },
+    {
+      "name": "login_and",
+      "value": "及"
+    },
+    {
+      "name": "WalkApplicationFormAbility_desc",
+      "value": "form_description"
+    },
+    {
+      "name": "WalkApplicationFormAbility_label",
+      "value": "form_label"
+    },
+    {
+      "name": "widget_desc",
+      "value": "This is a service widget."
+    },
+    {
+      "name": "widget_display_name",
+      "value": "widget"
+    },
+    {
+      "name": "card_list_title",
+      "value": "Title"
+    },
+    {
+      "name": "card_list_content",
+      "value": "Introduction"
+    },
+    {
+      "name": "widget_search",
+      "value": "discover more"
+    },
+    {
+      "name": "widget_explored",
+      "value": "explored"
+    },
+    {
+      "name": "widget_study",
+      "value": "study"
+    },
+    {
+      "name": "widget_activity",
+      "value": "activity"
+    },
+    {
+      "name": "widget_mine",
+      "value": "mine"
+    },
+    {
+      "name": "widget_more",
+      "value": "more Info"
+    },
+    {
+      "name": "walkWidget_desc",
+      "value": "This is a service widget."
+    },
+    {
+      "name": "walkWidget_display_name",
+      "value": "walkWidget"
+    }
+  ]
+}

@@ -67,6 +67,14 @@
     {
       "name": "widget1_display_name",
       "value": "widget1"
+    },
+    {
+      "name": "widget2_desc",
+      "value": "This is a service widget."
+    },
+    {
+      "name": "widget2_display_name",
+      "value": "widget2"
     }
   ]
 }

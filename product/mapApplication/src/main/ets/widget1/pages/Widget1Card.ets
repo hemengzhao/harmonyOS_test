@@ -54,11 +54,20 @@ struct Widget1Card {
             })
           })
           Button('数据').onClick(() => {
+            // postCardAction(this, {
+            //   action: this.ACTION_TYPE,
+            //   abilityName: this.ABILITY_NAME,
+            //   params: {
+            //     targetPage: 'DataPage'
+            //   }
+            // })
+
+
             postCardAction(this, {
-              action: this.ACTION_TYPE,
-              abilityName: this.ABILITY_NAME,
+              action: 'router',
+              abilityName: 'WalkApplicationAbility',
               params: {
-                targetPage: 'DataPage'
+                targetPage: 'Index'
               }
             })
           })

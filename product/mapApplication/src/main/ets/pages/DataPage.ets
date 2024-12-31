@@ -1,4 +1,4 @@
-import { FileUpload } from '@ohos/common';
+
 
 @Entry
 @Component
