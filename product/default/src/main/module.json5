@@ -58,6 +58,12 @@
         ]
       }
     ],
+    "metadata": [
+      {
+        "name": "client_id",
+        "value": "1589966452859911168"  // 配置为获取的Client ID
+      }
+    ],
     "requestPermissions": [
       {
         "name": "ohos.permission.INTERNET"

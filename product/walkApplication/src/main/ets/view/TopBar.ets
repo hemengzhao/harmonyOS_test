@@ -9,7 +9,8 @@ export struct TopBar {
         Text('<').width(36).height(36).borderRadius(18)
           .backgroundColor(Color.White)
           .textAlign(TextAlign.Center)
-          .fontSize(18).onClick(() => {
+          .fontSize(18)
+          .onClick(() => {
             router.back()
         })
       } else {
@@ -18,7 +19,11 @@ export struct TopBar {
           .fontColor(0x333333)
       }
       Column(){
-        Image($r('app.media.home_my')).width(50)
+        Image($r('app.media.home_my')).width(50).onClick(() => {
+          router.pushUrl({
+            url: 'pages/MyPage'
+          })
+        })
       }
     }.justifyContent(FlexAlign.SpaceBetween).width('100%')
     .padding({
@@ -26,6 +31,6 @@ export struct TopBar {
       right: 20,
       top: 20
     })
-    .backgroundColor(Color.Orange)
+
   }
 }

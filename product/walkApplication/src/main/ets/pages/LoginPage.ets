@@ -13,8 +13,8 @@ struct LoginPage {
     .margin({top: 37})
   }
   build() {
-    Column( ){
-      Image($r('app.media.loginBg2')).width(314)
+    Column(){
+      Image($r('app.media.loginBg2')).width(314).margin({top: 60})
 
       Row(){
         Row(){
