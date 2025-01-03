@@ -1,3 +1,4 @@
+import { callPhone } from '@ohos/common';
 import { Size } from '@ohos/hypium';
 import { MyTimePicker } from '../view/TimePicker';
 import { TopBar } from '../view/TopBar';
@@ -212,7 +213,9 @@ struct TakeTaxiPage {
             .width(40)
             .height(40)
             .borderRadius(20)
-            .backgroundColor('#313131')
+            .backgroundColor('#313131').onClick(() => {
+              callPhone('18137930317')
+            })
 
           Badge({
             count: 3,

@@ -1,5 +1,6 @@
 import { IHomeCartItem } from "../viewModel/homeModel"
 import { router } from "@kit.ArkUI"
+import { callPhone } from "@ohos/common"
 
 let RelConB: Record<string, Record<string, string | VerticalAlign | HorizontalAlign>> = {
   'top': { 'anchor': 'row1', 'align': VerticalAlign.Bottom },
@@ -37,6 +38,8 @@ export struct HomeBotBox {
       router.pushUrl({
         url: 'pages/TakeTaxiPage'
       })
+    } else if (item.id === 2){
+
     }
   }
   @Builder CartBox(){

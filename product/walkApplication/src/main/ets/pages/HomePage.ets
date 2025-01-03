@@ -32,12 +32,12 @@ struct HomePage {
             'bottom': { 'anchor': '__container__', 'align': VerticalAlign.Bottom },
           }).height(320).margin({bottom: 30})
 
-          Column(){
-
-          }.alignRules({
-            'bottom': { 'anchor': '__container__', 'align': VerticalAlign.Bottom },
-          })
-          .width('100%')
+          // Column(){
+          //
+          // }.alignRules({
+          //   'bottom': { 'anchor': '__container__', 'align': VerticalAlign.Bottom },
+          // })
+          // .width('100%')
 
           // 设置底部功能栏
           // .expandSafeArea([SafeAreaType.SYSTEM], [SafeAreaEdge.BOTTOM])
