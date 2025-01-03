@@ -1,9 +1,7 @@
 import { callPhone } from '@ohos/common';
-import { Size } from '@ohos/hypium';
 import { MyTimePicker } from '../view/TimePicker';
 import { TopBar } from '../view/TopBar';
-
-
+import { router } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -48,7 +46,7 @@ struct TakeTaxiPage {
       }
     },
     alignment: DialogAlignment.Bottom,
-    offset: { dx: 0, dy: px2vp(this.bottomRectHeight) },
+    offset: { dx: 0, dy: 40 },
     customStyle: false,
     cornerRadius: {
       topLeft: 30,
@@ -226,7 +224,11 @@ struct TakeTaxiPage {
               .width(40)
               .height(40)
               .borderRadius(20)
-              .backgroundColor('#313131')
+              .backgroundColor('#313131').onClick(() => {
+                router.pushUrl({
+                  url: 'pages/MessagePage'
+                })
+            })
           }
         }
       }

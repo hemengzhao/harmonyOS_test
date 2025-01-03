@@ -5,6 +5,7 @@
     "pages/HomePage",
     "pages/SeachPage",
     "pages/TakeTaxiPage",
-    "pages/MyPage"
+    "pages/MyPage",
+    "pages/MessagePage"
   ]
 }
